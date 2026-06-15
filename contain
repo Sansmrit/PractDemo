@@ -1,0 +1,65 @@
+AIM:
+Write a simple application, create a Docker image, containerize it, push it to Docker Hub, and remove the image using Docker.
+
+--------------------------------------------------
+index.html
+--------------------------------------------------
+
+<h1>Hello Docker</h1>
+
+--------------------------------------------------
+Dockerfile
+--------------------------------------------------
+
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/index.html
+
+--------------------------------------------------
+Build Image
+--------------------------------------------------
+
+docker build -t myapp .
+
+--------------------------------------------------
+Run Container
+--------------------------------------------------
+
+docker run -d -p 8080:80 --name mycontainer myapp
+
+--------------------------------------------------
+Login to Docker Hub
+--------------------------------------------------
+
+docker login
+
+--------------------------------------------------
+Tag Image
+--------------------------------------------------
+
+docker tag myapp YOUR_DOCKERHUB_USERNAME/myapp:v1
+
+--------------------------------------------------
+Push Image to Docker Hub
+--------------------------------------------------
+
+docker push YOUR_DOCKERHUB_USERNAME/myapp:v1
+
+--------------------------------------------------
+Stop and Remove Container
+--------------------------------------------------
+
+docker stop mycontainer
+docker rm mycontainer
+
+--------------------------------------------------
+Remove Images
+--------------------------------------------------
+
+docker rmi myapp
+docker rmi YOUR_DOCKERHUB_USERNAME/myapp:v1
+
+--------------------------------------------------
+RESULT
+--------------------------------------------------
+
+Successfully created a Docker image, containerized the application, pushed the image to Docker Hub, and removed the Docker images.
