@@ -1,0 +1,76 @@
+AIM:
+Deploy an HTML webpage using a Dockerfile and share it on Docker Hub.
+
+--------------------------------------------------
+index.html
+--------------------------------------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Web Page</title>
+</head>
+<body>
+    <h1>Hello from Docker!</h1>
+</body>
+</html>
+
+--------------------------------------------------
+Dockerfile
+--------------------------------------------------
+
+FROM nginx:latest
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+--------------------------------------------------
+Build Docker Image
+--------------------------------------------------
+
+docker build -t html-webpage .
+
+--------------------------------------------------
+Run Docker Container
+--------------------------------------------------
+
+docker run -d -p 8080:80 --name webpage-container html-webpage
+
+--------------------------------------------------
+Verify Webpage
+--------------------------------------------------
+
+Open Browser:
+
+http://localhost:8080
+
+--------------------------------------------------
+Login to Docker Hub
+--------------------------------------------------
+
+docker login
+
+--------------------------------------------------
+Tag Docker Image
+--------------------------------------------------
+
+docker tag html-webpage YOUR_DOCKERHUB_USERNAME/html-webpage:v1
+
+--------------------------------------------------
+Push Image to Docker Hub
+--------------------------------------------------
+
+docker push YOUR_DOCKERHUB_USERNAME/html-webpage:v1
+
+--------------------------------------------------
+Verify Image on Docker Hub
+--------------------------------------------------
+
+docker pull YOUR_DOCKERHUB_USERNAME/html-webpage:v1
+
+--------------------------------------------------
+RESULT
+--------------------------------------------------
+
+Successfully deployed an HTML webpage using a Dockerfile, created a Docker image, ran it as a container, and shared the image on Docker Hub.
