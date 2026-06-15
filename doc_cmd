@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "===== 1. Docker Version ====="
+docker --version
+
+echo -e "\n===== 2. Running Containers ====="
+docker ps
+
+echo -e "\n===== 3. All Containers ====="
+docker ps -a
+
+echo -e "\n===== 4. Docker Images ====="
+docker images
+
+echo -e "\n===== 5. Run Hello World Container ====="
+docker run hello-world
