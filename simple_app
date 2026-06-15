@@ -1,0 +1,86 @@
+AIM:
+Write a simple application, build a Docker image, and share the image to Docker Hub.
+
+--------------------------------------------------
+Step 1: Create Application
+--------------------------------------------------
+
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Demo</title>
+</head>
+<body>
+    <h1>Hello from Docker!</h1>
+</body>
+</html>
+
+--------------------------------------------------
+Step 2: Create Dockerfile
+--------------------------------------------------
+
+Dockerfile
+
+FROM nginx:latest
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+--------------------------------------------------
+Step 3: Build Docker Image
+--------------------------------------------------
+
+docker build -t docker-demo .
+
+--------------------------------------------------
+Step 4: Run Docker Container
+--------------------------------------------------
+
+docker run -d -p 8080:80 docker-demo
+
+--------------------------------------------------
+Step 5: Verify Application
+--------------------------------------------------
+
+Open Browser:
+
+http://localhost:8080
+
+Output:
+
+Hello from Docker!
+
+--------------------------------------------------
+Step 6: Login to Docker Hub
+--------------------------------------------------
+
+docker login
+
+--------------------------------------------------
+Step 7: Tag Image
+--------------------------------------------------
+
+docker tag docker-demo YOUR_DOCKERHUB_USERNAME/docker-demo:v1
+
+--------------------------------------------------
+Step 8: Push Image to Docker Hub
+--------------------------------------------------
+
+docker push YOUR_DOCKERHUB_USERNAME/docker-demo:v1
+
+--------------------------------------------------
+Verify Image
+--------------------------------------------------
+
+docker images
+
+docker pull YOUR_DOCKERHUB_USERNAME/docker-demo:v1
+
+--------------------------------------------------
+RESULT
+--------------------------------------------------
+
+Successfully created a simple HTML application, built a Docker image, ran the container locally, and pushed the image to Docker Hub.
