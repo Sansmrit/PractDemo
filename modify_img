@@ -1,0 +1,33 @@
+AIM:
+Use Docker to modify an existing image, commit it, and save it as a new image.
+
+--------------------------------------------------
+Commands
+--------------------------------------------------
+
+# Pull image
+docker pull ubuntu
+
+# Run container
+docker run -it --name mycontainer ubuntu
+
+# Create a file inside container
+echo "Hello Docker" > demo.txt
+
+# Exit container
+exit
+
+# Commit container as new image
+docker commit mycontainer ubuntu-new
+
+# Check images
+docker images
+
+# Save image
+docker save -o ubuntu-new.tar ubuntu-new
+
+--------------------------------------------------
+RESULT
+--------------------------------------------------
+
+Successfully modified an existing Docker image, committed the changes, and saved it as a new image.
