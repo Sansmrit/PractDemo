@@ -1,0 +1,57 @@
+AIM:
+Write a playbook (ping_playbook.yml) that uses the ping module to test connectivity for all nodes in the inventory file.
+
+--------------------------------------------------
+Inventory File (hosts)
+--------------------------------------------------
+
+[webservers]
+192.168.1.10
+192.168.1.11
+
+--------------------------------------------------
+Playbook: ping_playbook.yml
+--------------------------------------------------
+
+---
+- name: Test connectivity to all nodes
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ping all managed nodes
+      ping:
+
+--------------------------------------------------
+Run the Playbook
+--------------------------------------------------
+
+ansible-playbook -i hosts ping_playbook.yml
+
+--------------------------------------------------
+Expected Output
+--------------------------------------------------
+
+PLAY [Test connectivity to all nodes] ****************
+
+TASK [Ping all managed nodes] ************************
+
+ok: [192.168.1.10] => {
+    "changed": false,
+    "ping": "pong"
+}
+
+ok: [192.168.1.11] => {
+    "changed": false,
+    "ping": "pong"
+}
+
+PLAY RECAP ******************************************
+
+192.168.1.10 : ok=1 changed=0 unreachable=0 failed=0
+192.168.1.11 : ok=1 changed=0 unreachable=0 failed=0
+
+--------------------------------------------------
+RESULT
+--------------------------------------------------
+
+Successfully executed the ping_playbook.yml playbook and verified connectivity to all nodes in the inventory file using the Ansible ping module.
