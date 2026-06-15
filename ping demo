@@ -1,6 +1,14 @@
 AIM:
 Write a playbook (ping_playbook.yml) that uses the ping module to test connectivity for all nodes in the inventory file.
-
+mkdir ansible-lab
+cd ansible-lab
+nano hosts
+vi hosts
+[webservers]
+192.168.1.10
+192.168.1.11
+[local]
+localhost ansible_connection=local
 --------------------------------------------------
 Inventory File (hosts)
 --------------------------------------------------
