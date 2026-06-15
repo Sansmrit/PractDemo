@@ -1,0 +1,42 @@
+
+---
+- name: Create, verify, and delete directory
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create directory /tmp/testdir
+      file:
+        path: /tmp/testdir
+        state: directory
+        mode: '0755'
+
+    - name: Verify directory exists
+      stat:
+        path: /tmp/testdir
+      register: dir_status
+
+    - name: Display verification result
+      debug:
+        msg: "Directory /tmp/testdir exists"
+      when: dir_status.stat.exists
+
+    - name: Delete directory /tmp/testdir
+      file:
+        path: /tmp/testdir
+        state: absent
+
+    - name: Verify directory is deleted
+      stat:
+        path: /tmp/testdir
+      register: deleted_status
+
+    - name: Display deletion result
+      debug:
+        msg: "Directory /tmp/testdir deleted successfully"
+      when: not deleted_status.stat.exists
+
+
+ansible-playbook -i inventory playbook.yml
+
+ls -ld /tmp/testdir
