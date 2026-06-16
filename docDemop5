@@ -1,0 +1,53 @@
+HelloWorld.java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World from Docker Container");
+    }
+}
+Dockerfile
+FROM eclipse-temurin:17
+
+COPY HelloWorld.java /app/HelloWorld.java
+
+WORKDIR /app
+
+RUN javac HelloWorld.java
+
+CMD ["java", "HelloWorld"]
+
+docker build -t javaapp .
+docker login
+
+docker images
+docker run -it myapp:v1 sh
+echo "" > newfile.txt
+
+docker ps -a
+
+docker commit ___ myapp:v2
+
+
+
+
+
+Index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker HTML Page</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <p>This is running inside a Docker container.</p>
+</body>
+</html>
+
+Dockerfile
+FROM nginx:stable-alpine3.17-slim
+COPY index.html /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+
+docker run -p 8080:80 myapp:v1
