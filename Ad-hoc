@@ -1,0 +1,49 @@
+AIM:
+Perform the following Ansible actions:
+a) Create and delete directories on managed node
+b) Copy files to remote hosts using ad-hoc commands
+
+--------------------------------------------------
+Create Directory on Managed Node
+--------------------------------------------------
+
+ansible all -m file -a "path=/home/ubuntu/demo_dir state=directory"
+
+--------------------------------------------------
+Delete Directory on Managed Node
+--------------------------------------------------
+
+ansible all -m file -a "path=/home/ubuntu/demo_dir state=absent"
+
+--------------------------------------------------
+Create a Local File
+--------------------------------------------------
+
+echo "Hello from Ansible" > sample.txt
+
+--------------------------------------------------
+Copy File to Remote Hosts
+--------------------------------------------------
+
+ansible all -m copy -a "src=sample.txt dest=/home/ubuntu/sample.txt"
+
+--------------------------------------------------
+Verify File on Remote Host
+--------------------------------------------------
+
+ansible all -m shell -a "cat /home/ubuntu/sample.txt"
+
+--------------------------------------------------
+Expected Output
+--------------------------------------------------
+
+SUCCESS => {
+    "changed": true,
+    "msg": ""
+}
+
+--------------------------------------------------
+RESULT
+--------------------------------------------------
+
+Successfully created and deleted directories on the managed node and copied files to remote hosts using Ansible ad-hoc commands.
